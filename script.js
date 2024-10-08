@@ -11,8 +11,6 @@ home.addEventListener('click',()=>{
   skill.style.color="white";
   about.style.color="white";
   contact.style.color="white";
-  contentHeading.innerText="Hi, It's me";
-  highlightedHeading.innerText="Rajan";
   writtenContent.innerText="I am Rajan singh of Uttar Pradesh creating my portfolio using HTML, Java-Script and CSS.If you found my sites intresting and helpfull and have work, contact me!!";
   
   
@@ -22,8 +20,6 @@ skill.addEventListener('click',()=>{
   skill.style.color="red";
   about.style.color="white";
   contact.style.color="white";
-  contentHeading.innerText="Here is my";
-  highlightedHeading.innerText="Skills";
   writtenContent.innerHTML=`<ol>
   <li>React</li>
   <li>Java</li>
@@ -39,8 +35,6 @@ about.addEventListener('click',()=>{
   skill.style.color="white";
   about.style.color="red";
   contact.style.color="white";
-  contentHeading.innerText="More about me:";
-  highlightedHeading.innerText="Bio";
   writtenContent.innerHTML=`<ul>
   <li>Undergraduate at NIT Manipur CSE.</li>
   <li>Current CPI : 8.96.</Li>
@@ -54,8 +48,6 @@ contact.addEventListener('click',()=>{
   skill.style.color="white";
   about.style.color="white";
   contact.style.color="red";
-  contentHeading.innerText="How to reach:";
-  highlightedHeading.innerText="Contact";
   writtenContent.innerHTML=`<ul>
   <li>Phone: 7706859838</li>
   <li>Email: rajansingh8593@gmail.com</Li>
@@ -64,3 +56,43 @@ contact.addEventListener('click',()=>{
 
   </ul>`;
 });
+
+
+
+// typewriter Effect
+const texts = [
+  "DEVELOPER",
+  "CODER",
+  "STUDENT"
+]
+
+let speed  =100;
+const textElements = document.querySelector(".name-animation");
+
+let textIndex = 0;
+let charcterIndex = 0;
+
+function typeWriter(){
+  if (charcterIndex < texts[textIndex].length){
+      textElements.innerHTML += texts[textIndex].charAt(charcterIndex);
+      charcterIndex++;
+      setTimeout(typeWriter, speed); 
+  }
+  else{
+      setTimeout(eraseText, 1000)
+  }
+}
+
+function eraseText(){
+  if(textElements.innerHTML.length > 0){
+      textElements.innerHTML = textElements.innerHTML.slice(0,-1);
+      setTimeout(eraseText, 50)
+  }
+  else{
+      textIndex = (textIndex + 1) % texts.length;
+      charcterIndex = 0;
+      setTimeout(typeWriter, 500)
+  }
+}
+
+window.onload = typeWriter
